@@ -1,0 +1,10 @@
+This is a demo app to demonstrate basic java programming functionality.
+
+While I did type all of the code and xml up myself it should be noted that the source code and layout were used from:
+
+Chapter 4: Tip Calculator App
+Android For Programmers
+An App-Driven Approach
+Deitel Developer Series
+
+(C) 2012 Pearson Education Inc.
