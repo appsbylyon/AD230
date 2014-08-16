@@ -16,4 +16,23 @@
     <string name="custom">Custom</string>
     <string name="zero">0.00</string>
 
+    <string name="twit_search_button_label">Search</string>
+    <string name="twit_save_button_label">Save</string>
+    <string name="twit_search_hint">Enter Twitter Query Here</string>
+    <string name="twit_search_title_label">Twitter Search</string>
+    <string name="twit_saved_search_title">Tagged Searches</string>
+    <string name="twit_clear_button_label">Clear</string>
+    <string name="twit_delete_button_label">Delete</string>
+    <string name="twit_search_saved_button_label">Search</string>
+    <string name="twit_cancel">Cancel</string>
+    <string name="twit_OK">OK</string>
+    <string name="twit_missingTitle">Missing Text</string>
+    <string name="twit_missingMessage">Please enter a search query and tag it.</string>
+    <string name="twit_confirmTitle">Are You Sure?</string>
+    <string name="twit_confirmMessage">This will delete all saved searches</string>
+    <string name="twit_erase">Erase</string>
+
+    <dimen name="twit_button_width">100dp</dimen>
+
+
 </resources>

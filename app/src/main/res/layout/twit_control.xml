@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/black_border9"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/twit_search_title_label"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:layout_width="@dimen/twit_button_width"
+                android:layout_height="wrap_content"
+                android:text="@string/twit_search_button_label"
+                android:id="@+id/twit_search_button"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/twit_search_entry"
+                android:hint="@string/twit_search_hint"
+                android:layout_alignParentLeft="true"
+                android:layout_alignBaseline="@id/twit_search_button"
+                android:layout_toLeftOf="@id/twit_search_button"/>
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:layout_width="@dimen/twit_button_width"
+                android:layout_height="wrap_content"
+                android:text="@string/twit_save_button_label"
+                android:id="@+id/twit_save_button"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/twit_query_tag_entry"
+                android:hint="Tag Your Query"
+                android:layout_alignParentLeft="true"
+                android:layout_alignBaseline="@id/twit_save_button"
+                android:layout_toLeftOf="@id/twit_save_button"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/black_border9"
+        android:padding="10dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/twit_saved_search_title"
+            android:id="@+id/twit_saved_search_label"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/twit_clear_tag_button"
+            android:text="Clear Tags"/>
+
+        <ScrollView
+            android:id="@+id/twit_tag_query_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/twit_saved_search_label"
+            android:layout_above="@id/twit_clear_tag_button">
+
+
+            </ScrollView>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
