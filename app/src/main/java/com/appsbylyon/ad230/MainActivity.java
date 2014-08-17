@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.appsbylyon.ad230.tipcalculator.TipCalculatorMainFrag;
+import com.appsbylyon.ad230.twit.TwitMainFrag;
 
 
 public class MainActivity extends Activity
@@ -17,6 +18,8 @@ public class MainActivity extends Activity
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     private TipCalculatorMainFrag tipCalc;
+
+    private TwitMainFrag twit;
 
     private int currentPosition = 0;
 
@@ -52,6 +55,12 @@ public class MainActivity extends Activity
                 getActionBar().setTitle(getString(R.string.title_section1));
                 fragmentManager.beginTransaction().replace(R.id.container, tipCalc).commit();
                 break;
+            case 1:
+                twit = new TwitMainFrag();
+                getActionBar().setTitle(R.string.title_section2);
+                fragmentManager.beginTransaction().replace(R.id.container, twit).commit();
+                break;
+
         }
 
     }

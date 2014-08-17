@@ -6,14 +6,14 @@
               android:layout_height="match_parent">
 
     <FrameLayout
-        android:id="@id/twit_containter1"
+        android:id="@+id/twit_containter1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
     </FrameLayout>
 
     <FrameLayout
-        android:id="@id/twit_containter2"
+        android:id="@+id/twit_containter2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">

@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ScrollView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.appsbylyon.ad230.R;
 
@@ -21,10 +23,17 @@ import java.util.Arrays;
 /**
  * Created by infinite on 8/16/2014.
  */
-public class TwitterSearch extends Fragment implements View.OnClickListener
+public class TwitterSearch extends Fragment
 {
+    public interface TwitterSearchListener
+    {
+        public void doSearch(String url);
+    }
+
     private static final String TAG = "AD230 - Twitter Search";
     private static final String SAVED_SEARCHES = "SAVED_SEARCHES";
+
+    private TwitterSearchListener activity;
 
     private SharedPreferences savedSearches;
 
@@ -35,12 +44,13 @@ public class TwitterSearch extends Fragment implements View.OnClickListener
     private Button saveTagButton;
     private Button clearTagButton;
 
-    private ScrollView tagScroll;
+    private LinearLayout tagContainer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState)
     {
         super.onCreateView(inflater, parent, savedInstanceState);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         View view = inflater.inflate(R.layout.twit_control, parent, false);
 
         savedSearches = getActivity().getSharedPreferences(SAVED_SEARCHES, Context.MODE_PRIVATE);
@@ -49,7 +59,7 @@ public class TwitterSearch extends Fragment implements View.OnClickListener
         tagEntry = (EditText) view.findViewById(R.id.twit_query_tag_entry);
 
         searchButton = (Button) view.findViewById(R.id.twit_search_button);
-        searchButton.setOnClickListener(this);
+        searchButton.setOnClickListener(untaggedSearchListener);
 
         saveTagButton = (Button) view.findViewById(R.id.twit_save_button);
         saveTagButton.setOnClickListener(saveButtonListener);
@@ -57,10 +67,15 @@ public class TwitterSearch extends Fragment implements View.OnClickListener
         clearTagButton = (Button) view.findViewById(R.id.twit_clear_tag_button);
         clearTagButton.setOnClickListener(this.clearTagListener);
 
-        tagScroll = (ScrollView) view.findViewById(R.id.twit_tag_query_scroll);
+        tagContainer = (LinearLayout) view.findViewById(R.id.twit_query_container);
 
         refreshButtons(null);
         return view;
+    }
+
+    public void setActivity (TwitMainFrag activity)
+    {
+        this.activity = (TwitterSearchListener) activity;
     }
 
     private void refreshButtons(String newTag)
@@ -76,7 +91,7 @@ public class TwitterSearch extends Fragment implements View.OnClickListener
         {
             for (int i = 0; i < tags.length; ++i)
             {
-                makeTagGui(newTag, i);
+                makeTagGui(tags[i], i);
             }
         }
     }
@@ -95,19 +110,19 @@ public class TwitterSearch extends Fragment implements View.OnClickListener
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View newTagView = inflater.inflate(R.layout.twit_new_tag_view, null);
 
-        Button newTagButton = (Button) newTagView.findViewWithTag(R.id.twit_new_tag_button);
+        Button newTagButton = (Button) newTagView.findViewById(R.id.twit_new_tag_button);
         newTagButton.setText(tag);
-        newTagButton.setOnClickListener(searchListener);
+        newTagButton.setOnClickListener(taggedSearchListener);
 
         Button newTagEditButton = (Button) newTagView.findViewById(R.id.twit_new_tag_edit_button);
         newTagEditButton.setOnClickListener(editButtonListener);
 
-        tagScroll.addView(newTagView, index);
+        tagContainer.addView(newTagView, index);
     }
 
     private void clearSavedTags()
     {
-        tagScroll.removeAllViews();
+        tagContainer.removeAllViews();
         savedSearches.edit().clear().apply();
     }
 
@@ -164,7 +179,8 @@ public class TwitterSearch extends Fragment implements View.OnClickListener
         @Override
         public void onClick(View view)
         {
-            Button button = (Button) view.findViewById(R.id.twit_new_tag_button);
+            LinearLayout parent = (LinearLayout) view.getParent();
+            Button button = (Button) parent.findViewById(R.id.twit_new_tag_button);
             String tag = button.getText().toString();
 
             tagEntry.setText(tag);
@@ -172,22 +188,36 @@ public class TwitterSearch extends Fragment implements View.OnClickListener
         }
     };
 
-    public View.OnClickListener searchListener = new View.OnClickListener()
+    public View.OnClickListener taggedSearchListener = new View.OnClickListener()
     {
         @Override
         public void onClick(View view)
         {
-            //TODO add webview code here
+            String buttonText = ((Button)view).getText().toString();
+            String query = savedSearches.getString(buttonText, "");
+            String urlString = getString(R.string.twit_searchURL) + query;
+            activity.doSearch(urlString);
         }
     };
 
-    @Override
-    public void onClick(View view)
+    public View.OnClickListener untaggedSearchListener = new View.OnClickListener()
     {
-        int id = view.getId();
-        switch (id)
+        @Override
+        public void onClick(View view)
         {
-
+            ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE))
+                    .hideSoftInputFromWindow(tagEntry.getWindowToken(), 0);
+            String searchString = searchEntry.getText().toString().trim();
+            if (searchString.length() > 0)
+            {
+                String urlString = getString(R.string.twit_searchURL) + searchEntry.getText().toString().trim();
+                activity.doSearch(urlString);
+            }
+            else
+            {
+                Toast.makeText(getActivity(), "Please Enter A Query!", Toast.LENGTH_SHORT).show();
+            }
         }
-    }
+    };
+
 }

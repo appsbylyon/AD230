@@ -103,6 +103,14 @@
             android:layout_below="@id/twit_saved_search_label"
             android:layout_above="@id/twit_clear_tag_button">
 
+            <LinearLayout
+                android:id="@+id/twit_query_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                </LinearLayout>
+
 
             </ScrollView>
 
