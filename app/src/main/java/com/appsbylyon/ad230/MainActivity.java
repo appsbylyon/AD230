@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.appsbylyon.ad230.cannon.CannonFragment;
 import com.appsbylyon.ad230.flag.FlagQuizFragment;
 import com.appsbylyon.ad230.tipcalculator.TipCalculatorMainFrag;
 import com.appsbylyon.ad230.twit.TwitMainFrag;
@@ -16,9 +17,12 @@ import com.appsbylyon.ad230.twit.TwitMainFrag;
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+    private static final String TAG = "AD230 Main Activity";
+
     private static final int TIP_CALC_POS = 0;
     private static final int TWIT_POS = 1;
     private static final int FLAG_QUIZ_POS = 2;
+    private static final int CANNON_GAME_POS = 3;
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
@@ -27,6 +31,8 @@ public class MainActivity extends Activity
     private TwitMainFrag twit;
 
     private FlagQuizFragment flagQuiz;
+
+    private CannonFragment cannonFragment;
 
     private int currentPosition = 0;
 
@@ -75,7 +81,12 @@ public class MainActivity extends Activity
                 getActionBar().setIcon(R.drawable.flag_icon);
                 fragmentManager.beginTransaction().replace(R.id.container, flagQuiz).commit();
                 break;
-
+            case CANNON_GAME_POS:
+                cannonFragment = new CannonFragment();
+                getActionBar().setTitle(getString(R.string.title_section4));
+                getActionBar().setIcon(R.drawable.cannon_icon);
+                fragmentManager.beginTransaction().replace(R.id.container, cannonFragment).commit();
+                break;
 
         }
 
@@ -113,7 +124,4 @@ public class MainActivity extends Activity
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
 }

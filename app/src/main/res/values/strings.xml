@@ -5,6 +5,7 @@
     <string name="title_section1">Tip Calculator</string>
     <string name="title_section2">Twitter Search</string>
     <string name="title_section3">Flag Quiz</string>
+    <string name="title_section4">Cannon Game</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
@@ -62,6 +63,14 @@
         <item>6</item>
         <item>9</item>
     </string-array>
+
+    <string name="cannon_results_format">
+      Shots fired: %1$d\nTotal time: %2$.1f</string>
+    <string name="cannon_reset_game">Reset Game</string>
+    <string name="cannon_win">You win!</string>
+    <string name="cannon_lose">You lose!</string>
+   <string name="cannon_time_remaining_format">
+      Time remaining: %.1f seconds</string>
 
 
 </resources>
