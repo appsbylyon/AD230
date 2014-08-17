@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.appsbylyon.ad230.flag.FlagQuizFragment;
 import com.appsbylyon.ad230.tipcalculator.TipCalculatorMainFrag;
 import com.appsbylyon.ad230.twit.TwitMainFrag;
 
@@ -15,18 +16,24 @@ import com.appsbylyon.ad230.twit.TwitMainFrag;
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+    private static final int TIP_CALC_POS = 0;
+    private static final int TWIT_POS = 1;
+    private static final int FLAG_QUIZ_POS = 2;
+
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     private TipCalculatorMainFrag tipCalc;
 
     private TwitMainFrag twit;
 
+    private FlagQuizFragment flagQuiz;
+
     private int currentPosition = 0;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
-    private CharSequence mTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +42,7 @@ public class MainActivity extends Activity
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
+
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -50,16 +57,25 @@ public class MainActivity extends Activity
         FragmentManager fragmentManager = getFragmentManager();
         switch (position)
         {
-            case 0:
+            case TIP_CALC_POS:
                 tipCalc = new TipCalculatorMainFrag();
                 getActionBar().setTitle(getString(R.string.title_section1));
+                getActionBar().setIcon(R.drawable.tip_calc_icon);
                 fragmentManager.beginTransaction().replace(R.id.container, tipCalc).commit();
                 break;
-            case 1:
+            case TWIT_POS:
                 twit = new TwitMainFrag();
                 getActionBar().setTitle(R.string.title_section2);
+                getActionBar().setIcon(R.drawable.twitter_icon);
                 fragmentManager.beginTransaction().replace(R.id.container, twit).commit();
                 break;
+            case FLAG_QUIZ_POS:
+                flagQuiz = new FlagQuizFragment();
+                getActionBar().setTitle(getString(R.string.title_section3));
+                getActionBar().setIcon(R.drawable.flag_icon);
+                fragmentManager.beginTransaction().replace(R.id.container, flagQuiz).commit();
+                break;
+
 
         }
 
@@ -69,22 +85,19 @@ public class MainActivity extends Activity
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            //TODO ADD CODE TO SHOW MENU OPTION FOR SPECIFIC FRAGMENTS
-            /**
+            switch (currentPosition)
+            {
+                case FLAG_QUIZ_POS:
+                    menu = flagQuiz.formatMenu(menu);
+                    break;
+            }
 
-            getMenuInflater().inflate(R.menu.main, menu);
-            restoreActionBar();
-            return true;
-             *
-             */
-            //restoreActionBar();
             return true;
         }
         return super.onCreateOptionsMenu(menu);
@@ -92,12 +105,11 @@ public class MainActivity extends Activity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (currentPosition)
+        {
+            case FLAG_QUIZ_POS:
+                flagQuiz.handleMenuSelection(item);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -4,7 +4,7 @@
     <string name="app_name">AD230</string>
     <string name="title_section1">Tip Calculator</string>
     <string name="title_section2">Twitter Search</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section3">Flag Quiz</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
@@ -34,6 +34,34 @@
     <string name="twit_searchURL">http://mobile.twitter.com/search?q=</string>
 
     <dimen name="twit_button_width">100dp</dimen>
+
+    <string name="flag_choices">Select Number of Choices</string>
+    <string name="flag_correct">correct</string>
+    <string name="flag_guess_country">Guess the Country</string>
+    <string name="flag_guesses">guesses</string>
+    <string name="flag_incorrect_answer">Incorrect!</string>
+    <string name="flag_more_regions_title">More Regions Required</string>
+   <string name="flag_more_regions_message">There are not enough countries in
+      the selected regions. Please select more regions.</string>
+    <string name="flag_of">of</string>
+    <string name="flag_ok">OK</string>
+    <string name="flag_question">Flag</string>
+    <string name="flag_quiz_title">Ten Question Flag Quiz</string>
+    <string name="flag_regions">Select Regions</string>
+    <string name="flag_reset_quiz">Reset Quiz</string>
+    <string-array name="flag_regionsList">
+        <item>Africa</item>
+        <item>Asia</item>
+        <item>Europe</item>
+        <item>North_America</item>
+        <item>Oceania</item>
+        <item>South_America</item>
+    </string-array>
+    <string-array name="flag_guessesList">
+        <item>3</item>
+        <item>6</item>
+        <item>9</item>
+    </string-array>
 
 
 </resources>
