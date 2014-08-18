@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.appsbylyon.ad230.cannon.CannonFragment;
 import com.appsbylyon.ad230.flag.FlagQuizFragment;
+import com.appsbylyon.ad230.spoton.SpotOnFragment;
 import com.appsbylyon.ad230.tipcalculator.TipCalculatorMainFrag;
 import com.appsbylyon.ad230.twit.TwitMainFrag;
 
@@ -23,6 +24,7 @@ public class MainActivity extends Activity
     private static final int TWIT_POS = 1;
     private static final int FLAG_QUIZ_POS = 2;
     private static final int CANNON_GAME_POS = 3;
+    private static final int SPOT_ON_POS = 4;
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
@@ -33,6 +35,8 @@ public class MainActivity extends Activity
     private FlagQuizFragment flagQuiz;
 
     private CannonFragment cannonFragment;
+
+    private SpotOnFragment spotOnFrag;
 
     private int currentPosition = 0;
 
@@ -86,6 +90,12 @@ public class MainActivity extends Activity
                 getActionBar().setTitle(getString(R.string.title_section4));
                 getActionBar().setIcon(R.drawable.cannon_icon);
                 fragmentManager.beginTransaction().replace(R.id.container, cannonFragment).commit();
+                break;
+            case SPOT_ON_POS:
+                spotOnFrag = new SpotOnFragment();
+                getActionBar().setTitle(getString(R.string.title_section5));
+                getActionBar().setIcon(R.drawable.green_spot);
+                fragmentManager.beginTransaction().replace(R.id.container, spotOnFrag).commit();
                 break;
 
         }

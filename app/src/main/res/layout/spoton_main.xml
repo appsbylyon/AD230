@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/spot_on_relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white">
+    <TextView android:id="@+id/spot_on_highScoreTextView"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:layout_marginLeft="10dp"
+              android:textColor="@android:color/black" android:textSize="25sp"
+              android:text="@string/spot_on_high_score"/>
+    <TextView android:id="@+id/spot_on_levelTextView"
+              android:layout_toRightOf="@id/spot_on_highScoreTextView"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:layout_marginRight="10dp"
+              android:gravity="right"
+              android:layout_alignParentRight="true"
+              android:textColor="@android:color/black" android:textSize="25sp"
+              android:text="@string/spot_on_level"/>
+    <TextView android:id="@+id/spot_on_scoreTextView"
+              android:layout_below="@id/spot_on_highScoreTextView"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="10dp"
+              android:textColor="@android:color/black" android:textSize="25sp"
+              android:text="@string/spot_on_score"/>
+    <LinearLayout android:id="@+id/spot_on_lifeLinearLayout"
+                  android:layout_alignParentBottom="true"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="10dp"/>
+</RelativeLayout >
