@@ -23,12 +23,47 @@ public class TwitWebView extends WebViewFragment
 
     private SharedPreferences prefs;
 
+    private boolean isActive = false;
+
+
     @Override
     public void onAttach (Activity activity)
     {
         super.onAttach(activity);
         loading = new ProgressDialog(activity);
     }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        loading = null;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.e(TAG, "Web View On Start Called");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.e(TAG, "Web View On Stop Called");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.e(TAG, "Web View On Pause Called");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e(TAG, "Web View on Resume Called");
+        this.setActive(true);
+    }
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
@@ -73,11 +108,18 @@ public class TwitWebView extends WebViewFragment
         view.loadUrl(currentUrl);
     }
 
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
     public void setUrl(String url)
     {
-        prefs.edit().putString(TAG, url).apply();
-        loading.show();
-        getWebView().loadUrl(url);
+        if (isActive)
+        {
+            prefs.edit().putString(TAG, url).apply();
+            loading.show();
+            getWebView().loadUrl(url);
+        }
     }
 
 

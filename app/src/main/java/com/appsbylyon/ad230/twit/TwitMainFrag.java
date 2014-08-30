@@ -3,6 +3,7 @@ package com.appsbylyon.ad230.twit;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Surface;
@@ -21,7 +22,40 @@ public class TwitMainFrag extends Fragment implements TwitterSearch.TwitterSearc
 
     private TwitterSearch twitSearch = new TwitterSearch();
 
-    private TwitWebView twitWebView = new TwitWebView();
+    private TwitWebView twitWebView;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onDestroy();
+
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        Log.e(TAG, "TWIT FRAG ON START CALLED");
+    }
+    @Override
+    public void onStop(){
+        super.onStop();
+        twitWebView.setActive(false);
+        Log.e(TAG, "TWIT FRAG ON STOP CALLED");
+    }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        getFragmentManager().beginTransaction().remove(twitSearch).remove(twitWebView)
+                .detach(twitSearch).detach(twitWebView).disallowAddToBackStack().commit();
+        twitSearch = null;
+        twitWebView = null;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState)
@@ -48,8 +82,11 @@ public class TwitMainFrag extends Fragment implements TwitterSearch.TwitterSearc
         }
         View view = inflater.inflate(layoutId, parent, false);
 
+        twitWebView = new TwitWebView();
         getFragmentManager().beginTransaction().add(R.id.twit_containter1, twitSearch)
                 .add(R.id.twit_containter2, twitWebView).commit();
+
+
 
         return view;
     }

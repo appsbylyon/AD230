@@ -29,6 +29,13 @@ public class TipCalculatorMainFrag extends Fragment
 
     private TextView descText;
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.e(TAG, "onDetach Called");
+        getFragmentManager().beginTransaction().remove(tipCalc).detach(tipCalc).disallowAddToBackStack().commit();
+        tipCalc = null;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState)

@@ -2,6 +2,7 @@ package com.appsbylyon.ad230;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.appsbylyon.ad230.cannon.CannonFragment;
+import com.appsbylyon.ad230.doodlz.DoodlzFragment;
 import com.appsbylyon.ad230.flag.FlagQuizFragment;
 import com.appsbylyon.ad230.spoton.SpotOnFragment;
 import com.appsbylyon.ad230.tipcalculator.TipCalculatorMainFrag;
@@ -25,18 +27,11 @@ public class MainActivity extends Activity
     private static final int FLAG_QUIZ_POS = 2;
     private static final int CANNON_GAME_POS = 3;
     private static final int SPOT_ON_POS = 4;
+    private static final int DOODLZ_POS = 5;
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    private TipCalculatorMainFrag tipCalc;
-
-    private TwitMainFrag twit;
-
-    private FlagQuizFragment flagQuiz;
-
-    private CannonFragment cannonFragment;
-
-    private SpotOnFragment spotOnFrag;
+    private Fragment currentFragment;
 
     private int currentPosition = 0;
 
@@ -65,40 +60,45 @@ public class MainActivity extends Activity
         // update the main content by replacing fragments
         currentPosition = position;
         FragmentManager fragmentManager = getFragmentManager();
+        if (currentFragment != null) {
+            fragmentManager.beginTransaction().detach(currentFragment).remove(currentFragment).commit();
+            currentFragment = null;
+        }
         switch (position)
         {
             case TIP_CALC_POS:
-                tipCalc = new TipCalculatorMainFrag();
+                currentFragment = new TipCalculatorMainFrag();
                 getActionBar().setTitle(getString(R.string.title_section1));
                 getActionBar().setIcon(R.drawable.tip_calc_icon);
-                fragmentManager.beginTransaction().replace(R.id.container, tipCalc).commit();
                 break;
             case TWIT_POS:
-                twit = new TwitMainFrag();
+                currentFragment = new TwitMainFrag();
                 getActionBar().setTitle(R.string.title_section2);
                 getActionBar().setIcon(R.drawable.twitter_icon);
-                fragmentManager.beginTransaction().replace(R.id.container, twit).commit();
                 break;
             case FLAG_QUIZ_POS:
-                flagQuiz = new FlagQuizFragment();
+                currentFragment = new FlagQuizFragment();
                 getActionBar().setTitle(getString(R.string.title_section3));
                 getActionBar().setIcon(R.drawable.flag_icon);
-                fragmentManager.beginTransaction().replace(R.id.container, flagQuiz).commit();
                 break;
             case CANNON_GAME_POS:
-                cannonFragment = new CannonFragment();
+                currentFragment = new CannonFragment();
                 getActionBar().setTitle(getString(R.string.title_section4));
                 getActionBar().setIcon(R.drawable.cannon_icon);
-                fragmentManager.beginTransaction().replace(R.id.container, cannonFragment).commit();
                 break;
             case SPOT_ON_POS:
-                spotOnFrag = new SpotOnFragment();
+                currentFragment = new SpotOnFragment();
                 getActionBar().setTitle(getString(R.string.title_section5));
                 getActionBar().setIcon(R.drawable.green_spot);
-                fragmentManager.beginTransaction().replace(R.id.container, spotOnFrag).commit();
+                break;
+            case DOODLZ_POS:
+                currentFragment = new DoodlzFragment();
+                getActionBar().setTitle(getString(R.string.title_section6));
+                getActionBar().setIcon(R.drawable.doodlz_icon);
                 break;
 
         }
+        fragmentManager.beginTransaction().add(R.id.container, currentFragment).commit();
 
     }
 
@@ -115,7 +115,10 @@ public class MainActivity extends Activity
             switch (currentPosition)
             {
                 case FLAG_QUIZ_POS:
-                    menu = flagQuiz.formatMenu(menu);
+                    menu = ((FlagQuizFragment) currentFragment).formatMenu(menu);
+                    break;
+                case DOODLZ_POS:
+                    menu = ((DoodlzFragment) currentFragment).formatMenu(menu);
                     break;
             }
 
@@ -129,7 +132,10 @@ public class MainActivity extends Activity
         switch (currentPosition)
         {
             case FLAG_QUIZ_POS:
-                flagQuiz.handleMenuSelection(item);
+                ((FlagQuizFragment) currentFragment).handleMenuSelection(item);
+                break;
+            case (DOODLZ_POS):
+                ((DoodlzFragment) currentFragment).handleMenuSelect(item);
                 break;
         }
         return super.onOptionsItemSelected(item);
