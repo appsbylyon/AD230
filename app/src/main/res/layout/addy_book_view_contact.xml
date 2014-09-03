@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TableLayout android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:stretchColumns="1" android:layout_margin="5dp">
+            <TableRow android:id="@+id/nameTableRow"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+                <TextView android:id="@+id/nameLabelTextView"
+                          style="@style/ContactLabelTextView"
+                          android:text="@string/addy_book_label_name"/>
+                <TextView android:id="@+id/nameTextView"
+                          style="@style/ContactTextView"/>
+            </TableRow>
+
+            <TableRow android:id="@+id/phoneTableRow"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+                <TextView android:id="@+id/phoneLabelTextView"
+                          style="@style/ContactLabelTextView"
+                          android:text="@string/addy_book_label_phone"/>
+                <TextView android:id="@+id/phoneTextView"
+                          style="@style/ContactTextView"/>
+            </TableRow>
+
+            <TableRow android:id="@+id/emailTableRow"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+                <TextView android:id="@+id/emailLabelTextView"
+                          style="@style/ContactLabelTextView"
+                          android:text="@string/addy_book_label_email"/>
+                <TextView android:id="@+id/emailTextView"
+                          style="@style/ContactTextView"/>
+            </TableRow>
+
+            <TableRow android:id="@+id/streetTableRow"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+                <TextView android:id="@+id/streetLabelTextView"
+                          style="@style/ContactLabelTextView"
+                          android:text="@string/addy_book_label_street"/>
+                <TextView android:id="@+id/streetTextView"
+                          style="@style/ContactTextView"/>
+            </TableRow>
+
+            <TableRow android:id="@+id/cityTableRow"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+                <TextView android:id="@+id/cityLabelTextView"
+                          style="@style/ContactLabelTextView"
+                          android:text="@string/addy_book_label_city"/>
+                <TextView android:id="@+id/cityTextView"
+                          style="@style/ContactTextView"/>
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/addy_book_delete_contact"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/addy_book_delete_button"
+                android:textColor="#FFFFFF"/>
+
+            <Button
+                android:id="@+id/addy_book_edit_button"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/addy_book_edit_button"
+                android:textColor="#FFFFFF"/>
+
+            <Button
+                android:id="@+id/addy_book_done_button"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Done"
+                android:textColor="#FFFFFF"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+</ScrollView>

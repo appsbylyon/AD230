@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:background="#000000">
+    <LinearLayout android:id="@+id/linearLayout"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical" android:padding="5dp">
+        <EditText android:id="@+id/nameEditText"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="#FFFFFF"
+                  android:imeOptions="actionNext" android:hint="@string/addy_book_hint_name"
+                  android:inputType="textPersonName|textCapWords"/>
+        <EditText android:id="@+id/phoneEditText"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="#FFFFFF"
+                  android:imeOptions="actionNext" android:hint="@string/addy_book_hint_phone"
+                  android:inputType="phone"/>
+        <EditText android:id="@+id/emailEditText"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="#FFFFFF"
+                  android:imeOptions="actionNext" android:hint="@string/addy_book_hint_email"
+                  android:inputType="textEmailAddress"/>
+        <TextView android:id="@+id/addressTextView"
+                  android:color="@android:color/black" android:textSize="18sp"
+                  android:paddingTop="10dp" android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textColor="#FFFFFF"
+                  android:imeOptions="actionNext"
+                  android:text="@string/addy_book_address"/>
+        <EditText android:id="@+id/streetEditText"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="#FFFFFF"
+                  android:imeOptions="actionNext" android:hint="@string/addy_book_hint_street"
+                  android:inputType="textPostalAddress|textCapWords"/>
+        <EditText android:id="@+id/cityEditText"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="#FFFFFF"
+                  android:imeOptions="actionDone" android:hint="@string/addy_book_hint_city"
+                  android:inputType="textPostalAddress|textCapWords"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cancelSaveContactButton"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:text="Cancel"/>
+
+            <Button android:id="@+id/saveContactButton"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:text="@string/addy_book_button_save_contact"/>
+
+
+
+            </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

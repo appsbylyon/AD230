@@ -76,9 +76,20 @@ public class DoodlzFragment extends Fragment
         currentAcceleration = SensorManager.GRAVITY_EARTH;
         lastAcceleration = SensorManager.GRAVITY_EARTH;
 
-        enableAccelerometerListening(); // listen for shake
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        enableAccelerometerListening();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        disableAccelerometerListening();
     }
 
     // enable listening for accelerometer events

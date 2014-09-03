@@ -8,6 +8,7 @@
     <string name="title_section4">Cannon Game</string>
     <string name="title_section5">Spot On</string>
     <string name="title_section6">Doodlz</string>
+    <string name="title_section7">Address Book</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
@@ -98,5 +99,31 @@
     <string name="doodlz_title_color_dialog">Choose Color</string>
     <string name="doodlz_title_line_width_dialog">Choose Line Width</string>
 
+    <string name="addy_book_button_add_contact">Add Contact</string>
+    <string name="addy_book_button_save_contact">Save Contact</string>
+    <string name="addy_book_menuitem_add_contact">Add Contact</string>
+    <string name="addy_book_menuitem_edit_contact">Edit Contact</string>
+    <string name="addy_book_menuitem_delete_contact">Delete Contact</string>
+    <string name="addy_book_address">Address</string>
+    <string name="addy_book_hint_name">Name</string>
+    <string name="addy_book_hint_email">E-Mail</string>
+    <string name="addy_book_hint_phone">Phone</string>
+    <string name="addy_book_hint_street">Street</string>
+    <string name="addy_book_hint_city">City/State/Zip</string>
+    <string name="addy_book_label_name">Name:</string>
+    <string name="addy_book_label_email">E-Mail:</string>
+    <string name="addy_book_label_phone">Phone:</string>
+    <string name="addy_book_label_street">Street:</string>
+    <string name="addy_book_label_city">City/State/Zip:</string>
+    <string name="addy_book_confirmTitle">Are You Sure?</string>
+   <string name="addy_book_confirmMessage">
+      This will permanently delete the contact</string>
+    <string name="addy_book_errorButton">OK</string>
+    <string name="addy_book_errorTitle">Contact Name is Required</string>
+    <string name="addy_book_errorMessage">You must enter a contact name</string>
+    <string name="addy_book_button_cancel">Cancel</string>
+    <string name="addy_book_button_delete">Delete</string>
+    <string name="addy_book_delete_button">Delete</string>
+    <string name="addy_book_edit_button">Edit</string>
 
 </resources>

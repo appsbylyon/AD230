@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.appsbylyon.ad230.addressbook.AddressBookFragment;
 import com.appsbylyon.ad230.cannon.CannonFragment;
 import com.appsbylyon.ad230.doodlz.DoodlzFragment;
 import com.appsbylyon.ad230.flag.FlagQuizFragment;
@@ -28,6 +29,7 @@ public class MainActivity extends Activity
     private static final int CANNON_GAME_POS = 3;
     private static final int SPOT_ON_POS = 4;
     private static final int DOODLZ_POS = 5;
+    private static final int ADDY_BOOK_POS = 6;
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
@@ -96,6 +98,11 @@ public class MainActivity extends Activity
                 getActionBar().setTitle(getString(R.string.title_section6));
                 getActionBar().setIcon(R.drawable.doodlz_icon);
                 break;
+            case ADDY_BOOK_POS:
+                currentFragment = new AddressBookFragment();
+                getActionBar().setTitle(getString(R.string.title_section7));
+                getActionBar().setIcon(R.drawable.addy_book_icon);
+                break;
 
         }
         fragmentManager.beginTransaction().add(R.id.container, currentFragment).commit();
@@ -120,6 +127,9 @@ public class MainActivity extends Activity
                 case DOODLZ_POS:
                     menu = ((DoodlzFragment) currentFragment).formatMenu(menu);
                     break;
+                case ADDY_BOOK_POS:
+                    ((AddressBookFragment) currentFragment).createMenuOptions(menu);
+                    break;
             }
 
             return true;
@@ -136,6 +146,9 @@ public class MainActivity extends Activity
                 break;
             case (DOODLZ_POS):
                 ((DoodlzFragment) currentFragment).handleMenuSelect(item);
+                break;
+            case ADDY_BOOK_POS:
+                ((AddressBookFragment) currentFragment).handleMenuSelection(item);
                 break;
         }
         return super.onOptionsItemSelected(item);
