@@ -80,6 +80,8 @@ public class TwitWebView extends WebViewFragment
         view.setPadding(0,0,0,0);
 
         view.getSettings().setLoadWithOverviewMode(true);
+        view.getSettings().setJavaScriptEnabled(true);
+        view.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 
         getWebView().setWebViewClient(new WebViewClient()
         {
